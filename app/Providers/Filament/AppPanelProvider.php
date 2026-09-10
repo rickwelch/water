@@ -19,24 +19,29 @@ use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 
-class AdminPanelProvider extends BasePanelProvider
+class AppPanelProvider extends BasePanelProvider
 {
     public function panel(Panel $panel): Panel
     {
         $panel = $this->basePanel($panel);
         return $panel
-            ->id('admin')
-            ->path('admin')
-            ->login()
+            ->default()
+            ->id('app')
+            ->path('')
+            //->login()
+            //->registration()
+            //->passwordReset()
+            //->profile()
+            //->brandName('Your Water System')
             ->colors([
-                'primary' => Color::Amber,
+                'primary' => Color::Lime,
             ])
-            ->discoverResources(in: app_path('Filament/Admin/Resources'), for: 'App\Filament\Admin\Resources')
-            ->discoverPages(in: app_path('Filament/Admin/Pages'), for: 'App\Filament\Admin\Pages')
+            ->discoverResources(in: app_path('Filament/App/Resources'), for: 'App\Filament\App\Resources')
+            ->discoverPages(in: app_path('Filament/App/Pages'), for: 'App\Filament\App\Pages')
             ->pages([
                 Dashboard::class,
             ])
-            ->discoverWidgets(in: app_path('Filament/Admin/Widgets'), for: 'App\Filament\Admin\Widgets')
+            ->discoverWidgets(in: app_path('Filament/App/Widgets'), for: 'App\Filament\App\Widgets')
             ->middleware([
                 EncryptCookies::class,
                 AddQueuedCookiesToResponse::class,

@@ -4,6 +4,8 @@ Water is a Laravel-based project built using the official Laravel Livewire start
 
 This project has been a work-in-progress for three years being built to support a small rural community water system. It goal is to provide customer, billing, and communication as well as facility monitoring from remote sensors.
 
+This is the third rework/rewrite of the project.
+
 ## Functional requirements:
 - **Facility monitoring** - using custom Arduino and Raspberry Pi sensors for water levels, pump current, and ambient temperature.
 - **Customer management** - Maintain customer mailing address and preferred contact information as well as front ending for Stripe payement system.

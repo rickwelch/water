@@ -10,6 +10,7 @@ use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Infolists\Components\IconEntry;
@@ -41,9 +42,12 @@ class ServiceSiteResource extends Resource
                     ->default('4'),
                 Toggle::make('connected')
                     ->required(),
-                TextInput::make('meta'),
-                TextInput::make('customer_id')
-                    ->numeric(),
+                Select::make('customer_id')
+                    ->relationship('customer', 'firstname')
+                    ->getOptionLabelFromRecordUsing(fn ($record) => $record->fullname)
+                    ->searchable()
+                    ->preload()
+                    ->nullable(),
             ]);
     }
 
@@ -57,8 +61,8 @@ class ServiceSiteResource extends Resource
                 TextEntry::make('zone'),
                 IconEntry::make('connected')
                     ->boolean(),
-                TextEntry::make('customer_id')
-                    ->numeric()
+                TextEntry::make('customer.fullname')
+                    ->label('Customer')
                     ->placeholder('-'),
                 TextEntry::make('created_at')
                     ->dateTime()
@@ -82,8 +86,9 @@ class ServiceSiteResource extends Resource
                     ->searchable(),
                 IconColumn::make('connected')
                     ->boolean(),
-                TextColumn::make('customer_id')
-                    ->numeric()
+                TextColumn::make('customer.fullname')
+                    ->label('Customer')
+                    ->searchable(['firstname', 'lastname'])
                     ->sortable(),
                 TextColumn::make('created_at')
                     ->dateTime()

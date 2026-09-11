@@ -28,6 +28,7 @@ class AppPanelProvider extends BasePanelProvider
             ->default()
             ->id('app')
             ->path('')
+            ->viteTheme('resources/css/filament/theme.css')
             //->login()
             //->registration()
             //->passwordReset()

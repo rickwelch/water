@@ -16,6 +16,7 @@ abstract class BasePanelProvider extends PanelProvider
             ->passwordReset()
             ->profile()
             ->brandName('Your Water System')
+            ->viteTheme('resources/css/filament/theme.css')
             ;
     }
 }
